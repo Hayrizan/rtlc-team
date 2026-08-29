@@ -18,7 +18,7 @@
   async function loadDonors() {
     if (!donorsBoard) return;
     try {
-      const response = await fetch("data/donors.json", { cache: "no-store" });
+      const response = await fetch("data/donors.json?v=donors-2", { cache: "no-store" });
       if (!response.ok) throw new Error("donors unavailable");
       const payload = await response.json();
       const donors = Array.isArray(payload.donors) ? payload.donors

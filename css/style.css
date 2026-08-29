@@ -1262,9 +1262,9 @@ img {
   background: rgba(25,30,21,.72);
 }
 
-.donor-card--1 { grid-column: span 2; min-height: 250px; background: var(--orange); color: var(--bg); }
-.donor-card--2 { grid-column: span 2; min-height: 205px; background: var(--mint); color: var(--bg); }
-.donor-card--3 { grid-column: span 2; min-height: 175px; background: var(--violet); color: var(--ink); }
+.donor-card--1 { grid-column: 1 / -1; min-height: 250px; background: var(--orange); color: var(--bg); }
+.donor-card--2 { grid-column: span 3; min-height: 205px; background: var(--mint); color: var(--bg); }
+.donor-card--3 { grid-column: span 3; min-height: 175px; background: var(--violet); color: var(--ink); }
 .donor-card--rest { grid-column: span 2; min-height: 105px; }
 .donor-card__place { font: 800 .7rem ui-monospace, "Cascadia Mono", monospace; opacity: .75; }
 .donor-card__name { font-size: clamp(1.2rem, 2.2vw, 2rem); font-weight: 800; line-height: 1; }

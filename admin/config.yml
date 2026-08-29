@@ -28,4 +28,3 @@ collections:
                 name: "amount"
                 widget: "number"
                 value_type: "int"
-                min: 1

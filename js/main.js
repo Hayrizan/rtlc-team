@@ -32,7 +32,7 @@
         <article class="donor-card donor-card--${index < 3 ? index + 1 : "rest"}">
           <span class="donor-card__place">${String(index + 1).padStart(2, "0")}</span>
           <span class="donor-card__name">${escapeHtml(donor.name)}</span>
-          <strong class="donor-card__amount">${Number(donor.amount) > 0 ? `${Number(donor.amount).toLocaleString("ru-RU")} ₽` : "Сумма уточняется"}</strong>
+          <strong class="donor-card__amount">${Number(donor.amount) > 0 ? `${Number(donor.amount).toLocaleString("ru-RU")} ₽` : ""}</strong>
         </article>`).join("");
     } catch (error) {
       console.warn("Не удалось загрузить топ донатеров", error);

@@ -74,7 +74,7 @@ const viewports = [
       problems.push(`${label}: horizontal overflow ${metrics.width} > ${metrics.viewport}; ${JSON.stringify(offenders)}`);
     }
     if (metrics.cards !== 24) problems.push(`${label}: expected 24 project cards, got ${metrics.cards}`);
-    if (metrics.featured !== 4) problems.push(`${label}: expected 4 featured cards, got ${metrics.featured}`);
+    if (metrics.featured !== 0) problems.push(`${label}: featured block should be absent, got ${metrics.featured} cards`);
 
     if (viewport.width === 430) {
       await page.locator('[data-filter="exclusive"]').click();

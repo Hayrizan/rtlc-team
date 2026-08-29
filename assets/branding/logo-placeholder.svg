@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
-  <title id="title">RTLC TEAM</title>
-  <desc id="desc">Временный пиксельный знак RTLC TEAM</desc>
-  <path fill="#8d74ff" d="M16 16h80v8h8v8h8v64h-8v8H72l-16 16v-16H24v-8h-8z"/>
-  <path fill="#080a13" d="M24 24h72v8h8v56h-8v8H64l-8 8v-8H24z"/>
-  <path fill="#f1f3e9" d="M36 42h32v8h8v16h-8v8l8 12H64L56 74h-8v12H36zm12 8v16h16V50z"/>
-  <path fill="#56e0bd" d="M84 42h8v8h-8zm0 16h8v28h-8z"/>
-  <path fill="#ffb45e" d="M104 8h8v8h8v8h-8v8h-8v-8h-8v-8h8z"/>
-</svg>

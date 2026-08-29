@@ -2,7 +2,6 @@
   "use strict";
 
   const projects = Array.isArray(window.RTLC_PROJECTS) ? window.RTLC_PROJECTS : [];
-  const featuredRoot = document.querySelector("#featured-projects");
   const projectRoot = document.querySelector("#project-grid");
   const countRoot = document.querySelector("#project-count");
   const emptyRoot = document.querySelector("#empty-state");
@@ -40,25 +39,6 @@
 
   function tagMarkup(tags = []) {
     return tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
-  }
-
-  function renderFeatured() {
-    if (!featuredRoot) return;
-
-    const featured = projects.filter((project) => project.featured);
-    featuredRoot.innerHTML = featured.map((project, index) => `
-      <button class="featured-card reveal" type="button" data-project="${escapeHtml(project.id)}" style="--accent: ${escapeHtml(project.accent || accents[index % accents.length])}" aria-label="Подробнее о проекте ${escapeHtml(project.name)}">
-        <img class="featured-card__image" src="${escapeHtml(project.image)}" alt="Обложка игры ${escapeHtml(project.name)}" width="920" height="430" loading="${index > 1 ? "lazy" : "eager"}" decoding="async">
-        <span class="featured-card__number">0${index + 1}</span>
-        <span class="featured-card__body">
-          <span class="featured-card__status">${escapeHtml(labels[project.type])} / ${escapeHtml(accessLabel(project))}</span>
-          <span class="featured-card__title">${escapeHtml(project.name)}</span>
-          <span class="featured-card__description">${escapeHtml(project.description || "Подробности и актуальная версия доступны на Boosty RTLC.")}</span>
-          <span class="featured-card__tags">${tagMarkup(project.tags)}</span>
-        </span>
-        <span class="featured-card__open" aria-hidden="true">↗</span>
-      </button>
-    `).join("");
   }
 
   function matchesFilter(project) {
@@ -253,7 +233,6 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  renderFeatured();
   renderProjects();
   initFilters();
   initProjectEvents();

@@ -762,6 +762,7 @@ img {
 
 .project-card__banner {
   width: 100%;
+  height: auto;
   aspect-ratio: 720 / 338;
   object-fit: contain;
   background: #0b0d0a;

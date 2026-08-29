@@ -1242,6 +1242,19 @@ img {
   text-align: center;
 }
 
+.reviews-layout { display:grid; grid-template-columns:1.5fr 1fr; gap:24px; }
+.reviews-list { display:grid; gap:12px; }
+.review-card, .review-form { border:1px solid var(--line); background:rgba(25,30,21,.72); padding:24px; }
+.review-card strong { color:var(--orange); font-size:1.2rem; }
+.review-card p { margin:12px 0; color:var(--text); }
+.review-card a { color:var(--mint); }
+.review-form { display:grid; gap:14px; }
+.review-form label { display:grid; gap:6px; color:var(--muted); }
+.review-form input, .review-form select, .review-form textarea { width:100%; padding:12px; border:1px solid var(--line); background:var(--bg); color:var(--text); font:inherit; }
+.review-form small, .reviews-empty { color:var(--muted); }
+.hidden-field { display:none; }
+@media (max-width: 760px) { .reviews-layout { grid-template-columns:1fr; } }
+
 .donors-board {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

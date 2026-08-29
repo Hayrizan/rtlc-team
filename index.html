@@ -42,6 +42,7 @@
         <a href="#projects">Проекты</a>
         <a href="#about">О нас</a>
         <a href="#team">Команда</a>
+        <a href="#reviews">Отзывы</a>
         <a href="#donors">Топ донатеров</a>
         <a href="#support">Поддержать</a>
         <a class="topbar__boosty" href="https://boosty.to/rtlc" target="_blank" rel="noopener">Boosty ↗</a>
@@ -66,8 +67,9 @@
         <a href="#projects"><span>01</span> Проекты</a>
         <a href="#about"><span>02</span> О нас</a>
         <a href="#team"><span>03</span> Команда</a>
-        <a href="#donors"><span>04</span> Донатеры</a>
-        <a href="#contacts"><span>05</span> Связаться</a>
+        <a href="#reviews"><span>04</span> Отзывы</a>
+        <a href="#donors"><span>05</span> Донатеры</a>
+        <a href="#contacts"><span>06</span> Связаться</a>
       </nav>
     </div>
 
@@ -199,6 +201,13 @@
       </div>
     </section>
 
+    <section class="reviews section" id="reviews" aria-labelledby="reviews-title">
+      <div class="section-head reveal"><p class="section-index">[ 04 / ОТЗЫВЫ ]</p><div><h2 id="reviews-title">Спасибо за<br><em>добрые слова.</em></h2><p>Отзывы публикуются после проверки командой.</p></div></div>
+      <div class="reviews-layout"><div class="reviews-list" id="reviews-list"><p class="reviews-empty">Отзывы скоро появятся.</p></div>
+        <form class="review-form" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="review"><p class="hidden-field"><label>Не заполняйте: <input name="bot-field"></label></p><label>Ваш ник<input name="nickname" required maxlength="50" placeholder="Например, Winter2ra"></label><label>Игра<select name="project" id="review-project" required><option value="">Выберите игру</option></select></label><label>Отзыв<textarea name="message" required maxlength="500" rows="5" placeholder="Расскажите о русификаторе..."></textarea></label><button class="button" type="submit">Отправить отзыв <span>↗</span></button><small>После модерации отзыв появится на сайте.</small></form>
+      </div>
+    </section>
+
     <section class="donors section" id="donors" aria-labelledby="donors-title">
       <div class="section-head reveal">
         <p class="section-index">[ 05 / ТОП ДОНАТЕРОВ ]</p>
@@ -214,7 +223,7 @@
 
     <section class="contacts section" id="contacts" aria-labelledby="contacts-title">
       <div class="contacts__inner reveal">
-        <p class="section-index">[ 05 / НА СВЯЗИ ]</p>
+        <p class="section-index">[ 06 / НА СВЯЗИ ]</p>
         <h2 id="contacts-title">Следить за <span>RTLC</span></h2>
         <p>Новости переводов, обновления русификаторов и живой чат команды.</p>
         <div class="social-links">

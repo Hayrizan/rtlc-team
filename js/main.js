@@ -12,8 +12,20 @@
   const toast = document.querySelector("#toast");
   const filters = [...document.querySelectorAll(".filter")];
   const donorsBoard = document.querySelector("#donors-board");
+  const reviewsList = document.querySelector("#reviews-list");
+  const reviewProject = document.querySelector("#review-project");
   let activeFilter = "all";
   let toastTimer;
+
+  function loadReviews() {
+    projects.forEach((project) => reviewProject?.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`));
+    if (!reviewsList) return;
+    fetch("data/reviews.json?v=1", { cache: "no-store" }).then((response) => response.json()).then((data) => {
+      const reviews = Array.isArray(data.reviews) ? data.reviews.filter((item) => item?.approved && item.nickname && item.message) : [];
+      if (!reviews.length) return;
+      reviewsList.innerHTML = reviews.map((item) => { const project = projects.find((p) => p.id === item.project); return `<article class="review-card"><strong>${escapeHtml(item.nickname)}</strong><p>${escapeHtml(item.message)}</p>${project ? `<a href="#projects" data-project="${escapeHtml(project.id)}">${escapeHtml(project.name)} ↗</a>` : ""}</article>`; }).join("");
+    }).catch(() => {});
+  }
 
   async function loadDonors() {
     if (!donorsBoard) return;
@@ -276,6 +288,7 @@
 
   renderProjects();
   loadDonors();
+  loadReviews();
   initFilters();
   initProjectEvents();
   initMobileMenu();

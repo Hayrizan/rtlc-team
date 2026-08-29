@@ -7,6 +7,21 @@ media_folder: "assets/donors"
 public_folder: "/rtlc-team/assets/donors"
 
 collections:
+  - name: "reviews"
+    label: "Отзывы"
+    files:
+      - name: "approved"
+        label: "Отзывы"
+        file: "data/reviews.json"
+        fields:
+          - label: "Отзывы"
+            name: "reviews"
+            widget: "list"
+            fields:
+              - { label: "Ник", name: "nickname", widget: "string" }
+              - { label: "Игра (ID)", name: "project", widget: "string", hint: "Например: endacopia" }
+              - { label: "Текст", name: "message", widget: "text" }
+              - { label: "Одобрено", name: "approved", widget: "boolean", default: false }
   - name: "donors"
     label: "Топ донатеров"
     files:

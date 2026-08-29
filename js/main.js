@@ -70,7 +70,7 @@
       const accent = project.accent || accents[index % accents.length];
       return `
         <article class="project-card" style="--accent: ${escapeHtml(accent)}">
-          <img class="project-card__banner" src="${escapeHtml(steamAsset(project, "banner"))}" alt="Плашка ${escapeHtml(project.name)} из Steam" width="720" height="338" loading="lazy" decoding="async">
+          <img class="project-card__banner" src="${escapeHtml(steamAsset(project, "banner"))}" alt="Плашка ${escapeHtml(project.name)} из Steam" loading="lazy" decoding="async">
           <span class="project-card__body">
             <span class="project-card__top">
               <span>#${String(projectIndex).padStart(2, "0")}</span>

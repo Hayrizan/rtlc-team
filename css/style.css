@@ -726,17 +726,15 @@ img {
 
 .project-card {
   position: relative;
-  min-height: 260px;
+  min-height: 380px;
   display: flex;
   flex-direction: column;
-  padding: 22px;
-  border: 0;
+  overflow: hidden;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(25,30,21,.7);
   color: var(--ink);
   text-align: left;
-  cursor: pointer;
   transition: background .18s ease, transform .18s ease;
 }
 
@@ -745,6 +743,7 @@ img {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 4;
   width: 0;
   height: 3px;
   background: var(--accent, var(--violet));
@@ -759,6 +758,27 @@ img {
 
 .project-card:hover::before {
   width: 100%;
+}
+
+.project-card__banner {
+  width: 100%;
+  aspect-ratio: 720 / 338;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+  filter: saturate(.82) brightness(.82);
+  transition: transform .35s ease, filter .25s ease;
+}
+
+.project-card:hover .project-card__banner {
+  transform: scale(1.025);
+  filter: saturate(1) brightness(.95);
+}
+
+.project-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 20px 20px;
 }
 
 .project-card__top {
@@ -788,27 +808,79 @@ img {
 
 .project-card__title {
   display: block;
-  margin: 32px 0 auto;
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-size: clamp(1.2rem, 1.75vw, 1.65rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -.035em;
 }
 
+.project-card__heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 19px 0 auto;
+}
+
+.project-card__icon {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.project-card__footer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+}
+
 .project-card__tags {
-  margin-top: 24px;
+  margin-top: 0;
 }
 
 .project-card__tags .tag {
   color: var(--muted);
 }
 
-.project-card__arrow {
+.steam-badge {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255,255,255,.22);
+  background: #1b2838;
+  color: #fff;
+  font-family: ui-monospace, "Cascadia Mono", monospace;
+  font-size: .6rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.steam-badge:hover {
+  background: #2a475e;
+  transform: translate(-2px, -2px);
+}
+
+.project-card__trigger {
   position: absolute;
-  right: 20px;
-  bottom: 21px;
-  color: var(--accent, var(--mint));
-  font-size: 1.1rem;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.project-card__trigger:focus-visible {
+  outline-offset: -5px;
 }
 
 .empty-state {
@@ -1323,7 +1395,7 @@ img {
   background: linear-gradient(to top, var(--panel), transparent 90%);
 }
 
-.modal-hero img {
+.modal-hero > img {
   position: absolute;
   inset: 0;
   z-index: -2;
@@ -1348,6 +1420,23 @@ img {
   font-size: clamp(2.3rem, 6vw, 4.8rem);
   line-height: .9;
   letter-spacing: -.055em;
+}
+
+.modal-title-row {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+}
+
+.modal-title-row > img {
+  position: static;
+  z-index: auto;
+  flex: 0 0 auto;
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.4);
+  box-shadow: 5px 5px 0 rgba(0,0,0,.35);
 }
 
 .modal-body {
@@ -1637,7 +1726,7 @@ img {
   }
 
   .project-card {
-    min-height: 225px;
+    min-height: 390px;
   }
 
   .workbench li {

@@ -6,6 +6,7 @@
 window.RTLC_PROJECTS = [
   {
     id: "moral-dilemma",
+    steamAppId: 3364880,
     name: "Moral Dilemma: The Interview",
     type: "translation",
     access: ["free"],
@@ -19,6 +20,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "endacopia",
+    steamAppId: 2684630,
     name: "Endacopia",
     type: "translation",
     access: ["free"],
@@ -32,6 +34,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "schedule-i",
+    steamAppId: 3164500,
     name: "Schedule I",
     type: "translation",
     access: ["free", "exclusive"],
@@ -46,6 +49,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "playing-kafka",
+    steamAppId: 2911850,
     name: "Playing Kafka",
     type: "translation",
     access: ["free"],
@@ -59,6 +63,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "lethal-company",
+    steamAppId: 1966720,
     name: "Lethal Company",
     type: "translation",
     access: ["free", "exclusive"],
@@ -69,6 +74,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "repo",
+    steamAppId: 3241660,
     name: "R.E.P.O.",
     type: "translation",
     access: ["free", "exclusive"],
@@ -80,6 +86,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "gamble-with-your-friends",
+    steamAppId: 3892270,
     name: "Gamble With Your Friends",
     type: "translation",
     access: ["free"],
@@ -88,6 +95,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "am-i-nima-demo",
+    steamAppId: 3317110,
     name: "Am I Nima Demo",
     type: "translation",
     access: ["free"],
@@ -96,6 +104,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "control-not-coming-back",
+    steamAppId: 4515660,
     name: "Control, I'm Not Coming Back",
     type: "translation",
     access: ["free"],
@@ -105,6 +114,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "smile-more",
+    steamAppId: 4467540,
     name: "Smile More",
     type: "translation",
     access: ["free"],
@@ -113,6 +123,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "finding-frankie",
+    steamAppId: 2597970,
     name: "Finding Frankie",
     type: "voice",
     access: ["free"],
@@ -123,6 +134,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "subliminal",
+    steamAppId: 2300840,
     name: "Subliminal",
     type: "voice",
     access: ["free"],
@@ -131,6 +143,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "the-invincible",
+    steamAppId: 731040,
     name: "The Invincible",
     type: "voice",
     access: ["free"],
@@ -140,6 +153,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "darwins-paradox",
+    steamAppId: 2989180,
     name: "Darwin's Paradox!",
     type: "translation",
     access: ["free"],
@@ -148,6 +162,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "burglin-gnomes",
+    steamAppId: 3844970,
     name: "Burglin' Gnomes",
     type: "translation",
     access: ["free"],
@@ -156,6 +171,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "toejam-earl",
+    steamAppId: 516110,
     name: "ToeJam & Earl: Back in the Groove!",
     type: "translation",
     access: ["free"],
@@ -164,6 +180,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "deadline-escape",
+    steamAppId: 3872000,
     name: "Deadline Escape",
     type: "translation",
     access: ["free"],
@@ -172,6 +189,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "vigil",
+    steamAppId: 3817090,
     name: "Vigil",
     type: "translation",
     access: ["free"],
@@ -180,6 +198,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "krypta-fm",
+    steamAppId: 2973390,
     name: "Krypta FM",
     type: "translation",
     access: ["free"],
@@ -188,6 +207,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "welcome-dark-place",
+    steamAppId: 1135700,
     name: "Welcome To The Dark Place",
     type: "translation",
     access: ["free"],
@@ -196,6 +216,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "ratatan",
+    steamAppId: 2949320,
     name: "Ratatan",
     type: "translation",
     access: ["free"],
@@ -204,6 +225,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "kinitopet",
+    steamAppId: 2075070,
     name: "KinitoPET",
     type: "translation",
     access: ["exclusive"],
@@ -212,6 +234,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "buddy-simulator",
+    steamAppId: 1269950,
     name: "Buddy Simulator 1984",
     type: "translation",
     access: ["exclusive"],
@@ -220,6 +243,7 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "smarter-fifth-grader",
+    steamAppId: 1521160,
     name: "Are You Smarter Than A 5th Grader",
     type: "translation",
     access: ["exclusive"],

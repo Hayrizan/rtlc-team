@@ -41,6 +41,14 @@
     return tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
   }
 
+  function steamUrl(project) {
+    return project.steam || `https://store.steampowered.com/app/${project.steamAppId}/`;
+  }
+
+  function steamAsset(project, kind) {
+    return `assets/steam/${project.id}-${kind}.webp`;
+  }
+
   function matchesFilter(project) {
     if (activeFilter === "all") return true;
     if (activeFilter === "voice") return project.type === "voice" || project.tags.includes("Озвучка");
@@ -61,15 +69,24 @@
       const projectIndex = projects.findIndex((item) => item.id === project.id) + 1;
       const accent = project.accent || accents[index % accents.length];
       return `
-        <button class="project-card" type="button" data-project="${escapeHtml(project.id)}" style="--accent: ${escapeHtml(accent)}" aria-label="Подробнее о проекте ${escapeHtml(project.name)}">
-          <span class="project-card__top">
-            <span>#${String(projectIndex).padStart(2, "0")}</span>
-            <span class="project-card__access">${escapeHtml(accessLabel(project))}</span>
+        <article class="project-card" style="--accent: ${escapeHtml(accent)}">
+          <img class="project-card__banner" src="${escapeHtml(steamAsset(project, "banner"))}" alt="Плашка ${escapeHtml(project.name)} из Steam" width="720" height="338" loading="lazy" decoding="async">
+          <span class="project-card__body">
+            <span class="project-card__top">
+              <span>#${String(projectIndex).padStart(2, "0")}</span>
+              <span class="project-card__access">${escapeHtml(accessLabel(project))}</span>
+            </span>
+            <span class="project-card__heading">
+              <img class="project-card__icon" src="${escapeHtml(steamAsset(project, "icon"))}" alt="" width="56" height="56" loading="lazy" decoding="async">
+              <span class="project-card__title">${escapeHtml(project.name)}</span>
+            </span>
+            <span class="project-card__footer">
+              <span class="project-card__tags">${tagMarkup(project.tags)}</span>
+              <a class="steam-badge" href="${escapeHtml(steamUrl(project))}" target="_blank" rel="noopener" aria-label="${escapeHtml(project.name)} в Steam">Steam <span aria-hidden="true">↗</span></a>
+            </span>
           </span>
-          <span class="project-card__title">${escapeHtml(project.name)}</span>
-          <span class="project-card__tags">${tagMarkup(project.tags)}</span>
-          <span class="project-card__arrow" aria-hidden="true">↗</span>
-        </button>
+          <button class="project-card__trigger" type="button" data-project="${escapeHtml(project.id)}" aria-label="Подробнее о проекте ${escapeHtml(project.name)}"></button>
+        </article>
       `;
     }).join("");
 
@@ -82,23 +99,22 @@
     if (!project || !modal || !modalContent) return;
 
     const accent = project.accent || accents[projects.indexOf(project) % accents.length];
-    const image = project.image
-      ? `<img src="${escapeHtml(project.image)}" alt="Обложка игры ${escapeHtml(project.name)}" width="920" height="430">`
-      : "";
+    const image = `<img src="${escapeHtml(steamAsset(project, "banner"))}" alt="Плашка ${escapeHtml(project.name)} из Steam" width="720" height="338">`;
     const description = project.description || "Актуальная версия, описание и инструкция по установке доступны в официальном посте RTLC на Boosty.";
     const extraAccess = project.exclusiveBoosty
       ? `<a class="button" href="${escapeHtml(project.exclusiveBoosty)}" target="_blank" rel="noopener">Эксклюзивная версия <span>↗</span></a>`
       : "";
-    const steamLink = project.steam
-      ? `<a class="button" href="${escapeHtml(project.steam)}" target="_blank" rel="noopener">Страница в Steam <span>↗</span></a>`
-      : "";
+    const steamLink = `<a class="button" href="${escapeHtml(steamUrl(project))}" target="_blank" rel="noopener">Страница в Steam <span>↗</span></a>`;
 
     modalContent.innerHTML = `
       <div class="modal-hero" style="--accent: ${escapeHtml(accent)}">
         ${image}
         <div>
           <p class="modal-hero__eyebrow">${escapeHtml(labels[project.type])}</p>
-          <h2 id="modal-title">${escapeHtml(project.name)}</h2>
+          <div class="modal-title-row">
+            <img src="${escapeHtml(steamAsset(project, "icon"))}" alt="" width="64" height="64">
+            <h2 id="modal-title">${escapeHtml(project.name)}</h2>
+          </div>
         </div>
       </div>
       <div class="modal-body" style="--accent: ${escapeHtml(accent)}">

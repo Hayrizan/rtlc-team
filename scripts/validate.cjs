@@ -59,6 +59,9 @@ const viewports = [
       width: document.documentElement.scrollWidth,
       viewport: document.documentElement.clientWidth,
       cards: document.querySelectorAll("#project-grid .project-card").length,
+      steamBadges: document.querySelectorAll("#project-grid .steam-badge").length,
+      gameIcons: document.querySelectorAll("#project-grid .project-card__icon").length,
+      steamBanners: document.querySelectorAll("#project-grid .project-card__banner").length,
       featured: document.querySelectorAll("#featured-projects .featured-card").length,
       title: document.title,
     }));
@@ -74,6 +77,9 @@ const viewports = [
       problems.push(`${label}: horizontal overflow ${metrics.width} > ${metrics.viewport}; ${JSON.stringify(offenders)}`);
     }
     if (metrics.cards !== 24) problems.push(`${label}: expected 24 project cards, got ${metrics.cards}`);
+    if (metrics.steamBadges !== 24) problems.push(`${label}: expected 24 Steam badges, got ${metrics.steamBadges}`);
+    if (metrics.gameIcons !== 24) problems.push(`${label}: expected 24 game icons, got ${metrics.gameIcons}`);
+    if (metrics.steamBanners !== 24) problems.push(`${label}: expected 24 Steam banners, got ${metrics.steamBanners}`);
     if (metrics.featured !== 0) problems.push(`${label}: featured block should be absent, got ${metrics.featured} cards`);
 
     if (viewport.width === 430) {
@@ -93,6 +99,7 @@ const viewports = [
 
       await page.locator('#project-grid [data-project="endacopia"]').click();
       if (!(await page.locator("#project-modal").evaluate((dialog) => dialog.open))) problems.push(`${label}: modal did not open`);
+      await page.screenshot({ path: path.join(out, `${label}-modal.png`) });
       await page.locator(".project-modal__close").click();
 
       for (const sectionId of ["projects", "about", "team", "support", "contacts"]) {

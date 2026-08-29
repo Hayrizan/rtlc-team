@@ -36,6 +36,7 @@ GitHub Pages                     Публикация напрямую из ве
 ```js
 {
   id: "game-slug",
+  steamAppId: 123456,
   name: "Game Name",
   type: "translation", // translation или voice
   access: ["free"],    // free, exclusive или оба значения
@@ -49,6 +50,7 @@ GitHub Pages                     Публикация напрямую из ве
 ## Images
 
 - Обложки проектов: `assets/projects/`, рекомендуемый формат WebP.
+- Steam-плашки и мини-иконки: `assets/steam/`; файлы именуются по `id` проекта.
 - Фирменные материалы: `assets/branding/`.
 - Основной знак команды: `assets/branding/rtlc-bear.webp`.
 - Favicon создан из официального знака команды.

@@ -22,14 +22,17 @@
       if (!response.ok) throw new Error("donors unavailable");
       const payload = await response.json();
       const donors = Array.isArray(payload.donors) ? payload.donors
-        .filter((donor) => donor && donor.name && Number.isFinite(Number(donor.amount)))
-        .sort((a, b) => Number(b.amount) - Number(a.amount)) : [];
+        .filter((donor) => donor && donor.name)
+        .sort((a, b) => {
+          const amountDiff = Number(b.amount || 0) - Number(a.amount || 0);
+          return amountDiff || 0;
+        }) : [];
       if (!donors.length) return;
       donorsBoard.innerHTML = donors.map((donor, index) => `
         <article class="donor-card donor-card--${index < 3 ? index + 1 : "rest"}">
           <span class="donor-card__place">${String(index + 1).padStart(2, "0")}</span>
           <span class="donor-card__name">${escapeHtml(donor.name)}</span>
-          <strong class="donor-card__amount">${Number(donor.amount).toLocaleString("ru-RU")} ₽</strong>
+          <strong class="donor-card__amount">${Number(donor.amount) > 0 ? `${Number(donor.amount).toLocaleString("ru-RU")} ₽` : "Сумма уточняется"}</strong>
         </article>`).join("");
     } catch (error) {
       console.warn("Не удалось загрузить топ донатеров", error);

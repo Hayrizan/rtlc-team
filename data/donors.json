@@ -1,3 +1,14 @@
 {
-  "donors": []
+  "donors": [
+    { "name": "Winter2ra", "amount": 0 },
+    { "name": "Leonag Gaming", "amount": 0 },
+    { "name": "алексaндр aулов", "amount": 0 },
+    { "name": "Agent 08", "amount": 0 },
+    { "name": "Arseny 0123", "amount": 0 },
+    { "name": "Дмитрий *-*", "amount": 0 },
+    { "name": "Vladislav", "amount": 0 },
+    { "name": "ANILOR ANILORIAN", "amount": 0 },
+    { "name": "bazill2002", "amount": 0 },
+    { "name": "Семен Ефремов", "amount": 0 }
+  ]
 }

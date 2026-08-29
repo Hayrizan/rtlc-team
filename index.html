@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RTLC TEAM — Русские локализации игр</title>
+  <meta name="description" content="RTLC TEAM — команда русской локализации игр. Русификаторы, перевод текстур и русская озвучка для игр на Unity, Unreal Engine и Godot.">
+  <meta name="theme-color" content="#080a13">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://hayrizan.github.io/rtlc-team/">
+  <meta property="og:title" content="RTLC TEAM — Русские локализации игр">
+  <meta property="og:description" content="Русификаторы, перевод текстур и русская озвучка для игр на Unity, Unreal Engine и Godot.">
+  <meta property="og:image" content="assets/branding/social-placeholder.svg">
+  <meta property="og:image:alt" content="RTLC TEAM — Russian Translate Localisation Crew">
+  <link rel="canonical" href="https://hayrizan.github.io/rtlc-team/">
+  <link rel="icon" href="assets/branding/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/projects.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="star-field" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header class="hero" id="home">
+    <nav class="topbar" aria-label="Основная навигация">
+      <a class="topbar__mark" href="#home" aria-label="RTLC TEAM — на главную">
+        <span aria-hidden="true">R</span>
+        <span>RTLC TEAM</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="menu-toggle__label">Меню</span>
+        <span class="menu-toggle__icon" aria-hidden="true"></span>
+      </button>
+      <div class="topbar__links" id="site-menu">
+        <a href="#projects">Проекты</a>
+        <a href="#about">О нас</a>
+        <a href="#team">Команда</a>
+        <a href="#support">Поддержать</a>
+        <a class="topbar__boosty" href="https://boosty.to/rtlc" target="_blank" rel="noopener">Boosty ↗</a>
+      </div>
+    </nav>
+
+    <div class="hero__orbit hero__orbit--one" aria-hidden="true"></div>
+    <div class="hero__orbit hero__orbit--two" aria-hidden="true"></div>
+
+    <div class="hero__content reveal">
+      <div class="hero__eyebrow"><span class="status-dot" aria-hidden="true"></span> translation build: online</div>
+      <img class="hero__logo" src="assets/branding/logo-placeholder.svg" width="150" height="150" alt="Временный логотип RTLC TEAM">
+      <p class="hero__kicker">Russian Translate Localisation Crew</p>
+      <h1 aria-label="RTLC TEAM">
+        <span>RTLC</span>
+        <span class="hero__title-accent">TEAM</span>
+      </h1>
+      <p class="hero__lead">Переводим игры на русский язык.</p>
+      <p class="hero__skills">Текст <i></i> Текстуры <i></i> Озвучка <i></i> Unity <i></i> Unreal Engine <i></i> Godot</p>
+
+      <nav class="hero-menu" aria-label="Навигация по странице">
+        <a href="#projects"><span>01</span> Проекты</a>
+        <a href="#about"><span>02</span> О нас</a>
+        <a href="#team"><span>03</span> Команда</a>
+        <a href="#contacts"><span>04</span> Связаться</a>
+      </nav>
+    </div>
+
+    <a class="scroll-cue" href="#projects">
+      <span>листать</span>
+      <span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <section class="projects section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head reveal">
+        <p class="section-index">[ 01 / ПРОЕКТЫ ]</p>
+        <div>
+          <h2 id="projects-title">Русский язык<br><em>тоже часть игры.</em></h2>
+          <p>Русификаторы, переводы текстур и проекты русской озвучки RTLC TEAM.</p>
+        </div>
+      </div>
+
+      <div class="featured-block">
+        <div class="subhead reveal">
+          <h3>Сейчас в фокусе</h3>
+          <p>Свежие и заметные работы команды</p>
+        </div>
+        <div class="featured-grid" id="featured-projects" aria-live="polite"></div>
+      </div>
+
+      <div class="archive-block">
+        <div class="subhead reveal">
+          <h3>Все русификаторы</h3>
+          <p><span id="project-count">0</span> проектов в каталоге</p>
+        </div>
+
+        <div class="project-tools reveal">
+          <div class="filters" role="group" aria-label="Фильтр проектов">
+            <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">Все</button>
+            <button class="filter" type="button" data-filter="translation" aria-pressed="false">Русификаторы</button>
+            <button class="filter" type="button" data-filter="voice" aria-pressed="false">Озвучка</button>
+            <button class="filter" type="button" data-filter="free" aria-pressed="false">Бесплатные</button>
+            <button class="filter" type="button" data-filter="exclusive" aria-pressed="false">Эксклюзивные</button>
+          </div>
+          <label class="search">
+            <span class="sr-only">Найти игру</span>
+            <span aria-hidden="true">⌕</span>
+            <input id="project-search" type="search" placeholder="Найти игру..." autocomplete="off">
+          </label>
+        </div>
+
+        <div class="project-grid" id="project-grid" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>Ничего не найдено. Попробуйте другой запрос.</p>
+      </div>
+    </section>
+
+    <section class="about section" id="about" aria-labelledby="about-title">
+      <div class="section-head reveal">
+        <p class="section-index">[ 02 / О НАС ]</p>
+        <div>
+          <h2 id="about-title">Локализация —<br><em>это больше текста.</em></h2>
+        </div>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-copy reveal">
+          <p class="about-copy__lead">Мы — небольшая команда переводчиков и технических энтузиастов. Берёмся за игры, которые не получили русский язык или чей перевод хочется сделать лучше.</p>
+          <p>Работаем с проектами на Unity, Unreal Engine и Godot. Разбираемся не только со строками: локализуем интерфейсы, текстуры и спрайты, внедряем кириллические шрифты, собираем установщики и поддерживаем русификаторы после обновлений.</p>
+          <p>В отдельных проектах экспериментируем с нейродубляжом — и вручную доводим результат до игры.</p>
+        </div>
+
+        <div class="workbench reveal" aria-label="Направления работы RTLC TEAM">
+          <span class="workbench__title">localization_kit/</span>
+          <ul>
+            <li><span>01</span><strong>Текст и диалоги</strong><small>.csv .json .locres</small></li>
+            <li><span>02</span><strong>Интерфейсы</strong><small>UI / UX</small></li>
+            <li><span>03</span><strong>Текстуры и спрайты</strong><small>.png .dds .asset</small></li>
+            <li><span>04</span><strong>Шрифты</strong><small>А—Я / а—я</small></li>
+            <li><span>05</span><strong>Озвучка</strong><small>voice_ru</small></li>
+            <li><span>06</span><strong>Поддержка</strong><small>update_ready</small></li>
+          </ul>
+          <div class="workbench__status"><span aria-hidden="true"></span> всё собирается в рабочий русификатор</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team section" id="team" aria-labelledby="team-title">
+      <div class="section-head reveal">
+        <p class="section-index">[ 03 / КОМАНДА ]</p>
+        <div>
+          <h2 id="team-title">Два человека.<br><em>Много игр.</em></h2>
+          <p>Переводим, тестируем, собираем и отвечаем игрокам сами.</p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <article class="member member--violet reveal">
+          <div class="member__number">P1</div>
+          <div class="member__avatar" aria-hidden="true">DL</div>
+          <div class="member__body">
+            <p class="member__role">RTLC TEAM</p>
+            <h3>Dima_Looper</h3>
+            <p class="member__discord">discord / <button class="copy-discord" type="button" data-copy="dimalooper" aria-label="Скопировать Discord dimalooper">dimalooper</button></p>
+            <div class="member__links">
+              <a href="https://steamcommunity.com/id/dima_looper/" target="_blank" rel="noopener">Steam ↗</a>
+              <a href="https://www.youtube.com/@DimaLooper" target="_blank" rel="noopener">YouTube ↗</a>
+              <a href="https://www.twitch.tv/dima_looper" target="_blank" rel="noopener">Twitch ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="member member--mint reveal">
+          <div class="member__number">P2</div>
+          <div class="member__avatar" aria-hidden="true">HY</div>
+          <div class="member__body">
+            <p class="member__role">RTLC TEAM</p>
+            <h3>Hayrizan</h3>
+            <p class="member__discord">discord / <button class="copy-discord" type="button" data-copy="hayrizan" aria-label="Скопировать Discord hayrizan">hayrizan</button></p>
+            <div class="member__links">
+              <a href="https://steamcommunity.com/id/Hayrizan" target="_blank" rel="noopener">Steam ↗</a>
+              <a href="https://www.youtube.com/@Hayrizan" target="_blank" rel="noopener">YouTube ↗</a>
+              <a href="https://www.twitch.tv/hayrizan" target="_blank" rel="noopener">Twitch ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="support section" id="support" aria-labelledby="support-title">
+      <div class="support-grid">
+        <article class="support-card support-card--primary reveal">
+          <p class="section-index">[ 04 / ПОДДЕРЖАТЬ ]</p>
+          <span class="support-card__pixel" aria-hidden="true">♥</span>
+          <h2 id="support-title">Помочь RTLC<br>делать дальше</h2>
+          <p>Поддержка помогает продолжать работу над текущими и будущими русификаторами.</p>
+          <a class="button button--dark" href="https://boosty.to/rtlc" target="_blank" rel="noopener">Поддержать на Boosty <span>↗</span></a>
+        </article>
+
+        <article class="support-card support-card--request reveal">
+          <p class="support-card__label">Есть игра на примете?</p>
+          <h3>Какую игру перевести следующей?</h3>
+          <p>Можно предложить игру, в которой нет русского языка или существующая локализация требует улучшения.</p>
+          <a class="text-link" href="https://boosty.to/rtlc/posts/376bce65-dcf7-41a5-83ce-9a819ffbf329?share=post_link" target="_blank" rel="noopener">Предложить игру <span>→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="contacts section" id="contacts" aria-labelledby="contacts-title">
+      <div class="contacts__inner reveal">
+        <p class="section-index">[ 05 / НА СВЯЗИ ]</p>
+        <h2 id="contacts-title">Следить за <span>RTLC</span></h2>
+        <p>Новости переводов, обновления русификаторов и живой чат команды.</p>
+        <div class="social-links">
+          <a href="https://boosty.to/rtlc" target="_blank" rel="noopener"><small>Поддержка и релизы</small><strong>Boosty</strong><span>↗</span></a>
+          <a href="https://t.me/RTLC_news" target="_blank" rel="noopener"><small>Канал</small><strong>Новости</strong><span>↗</span></a>
+          <a href="https://t.me/RTLC_Team" target="_blank" rel="noopener"><small>Telegram</small><strong>Чат</strong><span>↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>RTLC TEAM</strong>
+      <span>Russian Translate Localisation Crew</span>
+    </div>
+    <p>Переводим игры, которые хотим видеть на русском.</p>
+    <div class="footer__meta">
+      <span>© <span id="current-year"></span> RTLC TEAM</span>
+      <a href="#home">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <dialog class="project-modal" id="project-modal" aria-labelledby="modal-title">
+    <div class="project-modal__frame">
+      <button class="project-modal__close" type="button" aria-label="Закрыть окно">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

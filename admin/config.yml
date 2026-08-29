@@ -2,8 +2,6 @@ backend:
   name: github
   repo: Hayrizan/rtlc-team
   branch: main
-  auth_type: pkce
-  app_id: Ov23liTbmfV89Hf6NKfZ
 
 media_folder: "assets/donors"
 public_folder: "/rtlc-team/assets/donors"

@@ -11,8 +11,30 @@
   const modalClose = document.querySelector(".project-modal__close");
   const toast = document.querySelector("#toast");
   const filters = [...document.querySelectorAll(".filter")];
+  const donorsBoard = document.querySelector("#donors-board");
   let activeFilter = "all";
   let toastTimer;
+
+  async function loadDonors() {
+    if (!donorsBoard) return;
+    try {
+      const response = await fetch("data/donors.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("donors unavailable");
+      const payload = await response.json();
+      const donors = Array.isArray(payload.donors) ? payload.donors
+        .filter((donor) => donor && donor.name && Number.isFinite(Number(donor.amount)))
+        .sort((a, b) => Number(b.amount) - Number(a.amount)) : [];
+      if (!donors.length) return;
+      donorsBoard.innerHTML = donors.map((donor, index) => `
+        <article class="donor-card donor-card--${index < 3 ? index + 1 : "rest"}">
+          <span class="donor-card__place">${String(index + 1).padStart(2, "0")}</span>
+          <span class="donor-card__name">${escapeHtml(donor.name)}</span>
+          <strong class="donor-card__amount">${Number(donor.amount).toLocaleString("ru-RU")} ₽</strong>
+        </article>`).join("");
+    } catch (error) {
+      console.warn("Не удалось загрузить топ донатеров", error);
+    }
+  }
 
   const labels = {
     translation: "Русификатор",
@@ -250,6 +272,7 @@
   }
 
   renderProjects();
+  loadDonors();
   initFilters();
   initProjectEvents();
   initMobileMenu();

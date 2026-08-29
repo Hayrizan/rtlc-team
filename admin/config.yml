@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: Hayrizan/rtlc-team
+  branch: main
+  auth_type: pkce
+
+media_folder: "assets/donors"
+public_folder: "/rtlc-team/assets/donors"
+
+collections:
+  - name: "donors"
+    label: "Топ донатеров"
+    files:
+      - name: "ranking"
+        label: "Рейтинг донатеров"
+        file: "data/donors.json"
+        fields:
+          - label: "Донатеры"
+            name: "donors"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.amount}} ₽"
+            fields:
+              - label: "Имя"
+                name: "name"
+                widget: "string"
+              - label: "Сумма доната"
+                name: "amount"
+                widget: "number"
+                value_type: "int"
+                min: 1

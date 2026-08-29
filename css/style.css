@@ -1242,6 +1242,36 @@ img {
   text-align: center;
 }
 
+.donors-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.donor-card {
+  position: relative;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(25,30,21,.72);
+}
+
+.donor-card--1 { grid-column: span 2; min-height: 250px; background: var(--orange); color: var(--bg); }
+.donor-card--2 { grid-column: span 2; min-height: 205px; background: var(--mint); color: var(--bg); }
+.donor-card--3 { grid-column: span 2; min-height: 175px; background: var(--violet); color: var(--ink); }
+.donor-card--rest { grid-column: span 2; min-height: 105px; }
+.donor-card__place { font: 800 .7rem ui-monospace, "Cascadia Mono", monospace; opacity: .75; }
+.donor-card__name { font-size: clamp(1.2rem, 2.2vw, 2rem); font-weight: 800; line-height: 1; }
+.donor-card--1 .donor-card__name { font-size: clamp(2rem, 4vw, 4rem); }
+.donor-card__amount { font: 800 1rem ui-monospace, "Cascadia Mono", monospace; }
+.donors-empty { grid-column: 1 / -1; margin: 0; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); }
+
 .contacts .section-index {
   margin: 0 0 25px;
 }
@@ -1728,6 +1758,13 @@ img {
   .project-grid {
     grid-template-columns: 1fr;
   }
+
+  .donors-board { grid-template-columns: repeat(2, 1fr); }
+  .donor-card--1,
+  .donor-card--2,
+  .donor-card--3,
+  .donor-card--rest { grid-column: span 1; min-height: 150px; }
+  .donor-card--1 { grid-column: 1 / -1; min-height: 220px; }
 
   .project-card {
     min-height: 390px;

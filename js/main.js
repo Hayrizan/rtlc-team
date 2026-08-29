@@ -21,7 +21,7 @@
     exclusive: "Эксклюзив",
   };
 
-  const accents = ["#8d74ff", "#56e0bd", "#ffb45e", "#ff668e", "#6fa8ff"];
+  const accents = ["#d64224", "#769a56", "#f0442e", "#a44b2d", "#9caf70"];
 
   function escapeHtml(value = "") {
     return String(value).replace(/[&<>"]/g, (character) => ({

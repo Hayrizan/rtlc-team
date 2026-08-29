@@ -5,6 +5,8 @@ const { chromium } = require("playwright");
 
 const root = path.resolve(__dirname, "..");
 const out = path.join(root, ".qa");
+const localMode = !process.env.SITE_URL;
+const siteUrl = (process.env.SITE_URL || "http://127.0.0.1:4173").replace(/\/$/, "");
 fs.mkdirSync(out, { recursive: true });
 
 const mime = {
@@ -37,7 +39,7 @@ const viewports = [
 ];
 
 (async () => {
-  await new Promise((resolve) => server.listen(4173, "127.0.0.1", resolve));
+  if (localMode) await new Promise((resolve) => server.listen(4173, "127.0.0.1", resolve));
   const browser = await chromium.launch({
     executablePath: process.env.BROWSER_PATH,
     headless: true,
@@ -52,7 +54,7 @@ const viewports = [
     });
     page.on("pageerror", (error) => problems.push(`${label} pageerror: ${error.message}`));
 
-    await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+    await page.goto(`${siteUrl}/`, { waitUntil: "networkidle" });
     const metrics = await page.evaluate(() => ({
       width: document.documentElement.scrollWidth,
       viewport: document.documentElement.clientWidth,
@@ -105,7 +107,7 @@ const viewports = [
   }
 
   await browser.close();
-  server.close();
+  if (localMode) server.close();
 
   if (problems.length) {
     console.error(problems.join("\n"));
@@ -115,6 +117,6 @@ const viewports = [
   }
 })().catch((error) => {
   console.error(error);
-  server.close();
+  if (localMode) server.close();
   process.exitCode = 1;
 });

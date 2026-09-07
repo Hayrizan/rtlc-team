@@ -17,18 +17,30 @@
   let activeFilter = "all";
   let toastTimer;
 
-  function loadReviews() {
-    projects.forEach((project) => reviewProject?.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`));
+  async function loadReviews() {
     if (!reviewsList) return;
-    fetch("data/reviews.json?v=1", { cache: "no-store" }).then((response) => response.json()).then((data) => {
+    reviewsList.setAttribute("aria-busy", "true");
+    try {
+      const response = await fetch("data/reviews.json", { cache: "no-store" });
+      if (!response.ok) throw new Error("reviews unavailable");
+      const data = await response.json();
       const reviews = Array.isArray(data.reviews) ? data.reviews.filter((item) => item?.approved && item.nickname && item.message) : [];
-      if (!reviews.length) return;
+      if (!reviews.length) {
+        reviewsList.innerHTML = '<p class="reviews-empty">Пока нет опубликованных отзывов. Поделитесь впечатлениями о переводе.</p>';
+        return;
+      }
       reviewsList.innerHTML = reviews.map((item) => { const project = projects.find((p) => p.id === item.project); return `<article class="review-card"><strong>${escapeHtml(item.nickname)}</strong><p>${escapeHtml(item.message)}</p>${project ? `<a href="#projects" data-project="${escapeHtml(project.id)}">${escapeHtml(project.name)} ↗</a>` : ""}</article>`; }).join("");
-    }).catch(() => {});
+    } catch {
+      reviewsList.innerHTML = '<p class="reviews-empty">Не удалось загрузить отзывы. <button type="button" data-retry="reviews">Попробовать ещё раз</button></p>';
+    } finally {
+      reviewsList.setAttribute("aria-busy", "false");
+    }
   }
 
   async function loadDonors() {
     if (!donorsBoard) return;
+    donorsBoard.setAttribute("aria-busy", "true");
+    donorsBoard.innerHTML = '<p class="donors-empty">Загрузка донатеров…</p>';
     try {
       const response = await fetch("data/donors.json?v=donors-2", { cache: "no-store" });
       if (!response.ok) throw new Error("donors unavailable");
@@ -39,7 +51,10 @@
           const amountDiff = Number(b.amount || 0) - Number(a.amount || 0);
           return amountDiff || 0;
         }) : [];
-      if (!donors.length) return;
+      if (!donors.length) {
+        donorsBoard.innerHTML = '<p class="donors-empty">Список пока пуст. Спасибо всем, кто поддерживает команду.</p>';
+        return;
+      }
       donorsBoard.innerHTML = donors.map((donor, index) => `
         <article class="donor-card donor-card--${index < 3 ? index + 1 : "rest"}">
           <span class="donor-card__place">${String(index + 1).padStart(2, "0")}</span>
@@ -47,7 +62,10 @@
           <strong class="donor-card__amount">${Number(donor.amount) > 0 ? `${Number(donor.amount).toLocaleString("ru-RU")} ₽` : ""}</strong>
         </article>`).join("");
     } catch (error) {
+      donorsBoard.innerHTML = '<p class="donors-empty">Не удалось загрузить донатеров. <button type="button" data-retry="donors">Попробовать ещё раз</button></p>';
       console.warn("Не удалось загрузить топ донатеров", error);
+    } finally {
+      donorsBoard.setAttribute("aria-busy", "false");
     }
   }
 
@@ -72,6 +90,26 @@
   function accessLabel(project) {
     if (project.access.length > 1) return "Бесплатно + эксклюзив";
     return labels[project.access[0]] || "Подробнее";
+  }
+
+  function projectWord(count) {
+    const lastTwo = count % 100;
+    if (lastTwo >= 11 && lastTwo <= 14) return "проектов";
+    if (count % 10 === 1) return "проект";
+    if (count % 10 >= 2 && count % 10 <= 4) return "проекта";
+    return "проектов";
+  }
+
+  function accessDescription(project) {
+    if (project.accessDetails) return project.accessDetails;
+    if (project.access.length > 1) return "Есть бесплатная и эксклюзивная версии. Состав и условия доступа уточняйте в публикации RTLC перед скачиванием.";
+    return project.access.includes("exclusive")
+      ? "Эксклюзивная версия. Условия платного доступа указаны в публикации на Boosty."
+      : "Бесплатная версия. Файлы и инструкция находятся в публикации RTLC на Boosty.";
+  }
+
+  function updateLabel(project) {
+    return project.updatedAt ? new Date(`${project.updatedAt}T12:00:00Z`).toLocaleDateString("ru-RU", { timeZone: "UTC" }) : "Дата не указана";
   }
 
   function tagMarkup(tags = []) {
@@ -117,6 +155,7 @@
               <img class="project-card__icon" src="${escapeHtml(steamAsset(project, "icon"))}" alt="" width="56" height="56" loading="lazy" decoding="async">
               <span class="project-card__title">${escapeHtml(project.name)}</span>
             </span>
+            ${project.updatedAt ? `<span class="project-card__updated">Обновление: ${escapeHtml(updateLabel(project))}</span>` : ""}
             <span class="project-card__footer">
               <span class="project-card__tags">${tagMarkup(project.tags)}</span>
               <a class="steam-badge" href="${escapeHtml(steamUrl(project))}" target="_blank" rel="noopener" aria-label="${escapeHtml(project.name)} в Steam">Steam <span aria-hidden="true">↗</span></a>
@@ -128,6 +167,8 @@
     }).join("");
 
     if (countRoot) countRoot.textContent = String(visible.length);
+    const countLabel = document.querySelector("#project-count-label");
+    if (countLabel) countLabel.textContent = projectWord(visible.length);
     if (emptyRoot) emptyRoot.hidden = visible.length !== 0;
   }
 
@@ -157,14 +198,19 @@
       <div class="modal-body" style="--accent: ${escapeHtml(accent)}">
         <p>${escapeHtml(description)}</p>
         <div class="modal-tags">${tagMarkup(project.tags)}</div>
-        <div class="modal-status">
-          <div><small>Тип проекта</small><strong>${escapeHtml(labels[project.type])}</strong></div>
-          <div><small>Доступ</small><strong>${escapeHtml(accessLabel(project))}</strong></div>
-        </div>
+        <p class="modal-access">${escapeHtml(accessDescription(project))}</p>
         <div class="modal-actions">
           <a class="button button--light" href="${escapeHtml(project.boosty)}" target="_blank" rel="noopener">Скачать / подробнее на Boosty <span>↗</span></a>
           ${extraAccess}
           ${steamLink}
+        </div>
+        <div class="modal-status">
+          <div><small>Тип проекта</small><strong>${escapeHtml(labels[project.type])}</strong></div>
+          <div><small>Доступ</small><strong>${escapeHtml(accessLabel(project))}</strong></div>
+          <div><small>Обновление перевода</small><strong>${escapeHtml(updateLabel(project))}${project.translationVersion ? ` · ${escapeHtml(project.translationVersion)}` : ""}</strong></div>
+          <div><small>Совместимость с игрой</small><strong>${escapeHtml(project.gameVersion || "Не подтверждена — уточните в публикации")}</strong></div>
+          <div><small>Поддержка перевода</small><strong>${escapeHtml(project.supportStatus || "Статус не указан — уточните у команды")}</strong></div>
+          ${project.checkedAt ? `<div><small>Сведения проверены</small><strong>${escapeHtml(project.checkedAt.split("-").reverse().join("."))} · по публикации RTLC</strong></div>` : ""}
         </div>
       </div>
     `;
@@ -198,7 +244,13 @@
   function initProjectEvents() {
     document.addEventListener("click", (event) => {
       const projectTrigger = event.target.closest("[data-project]");
-      if (projectTrigger) openProject(projectTrigger.dataset.project);
+      if (projectTrigger) {
+        event.preventDefault();
+        openProject(projectTrigger.dataset.project);
+      }
+      const retry = event.target.closest("[data-retry]");
+      if (retry?.dataset.retry === "donors") loadDonors();
+      if (retry?.dataset.retry === "reviews") loadReviews();
     });
 
     modalClose?.addEventListener("click", closeModal);
@@ -259,6 +311,45 @@
     });
   }
 
+  function initReviewForm() {
+    const form = document.querySelector("#review-form");
+    const draft = document.querySelector("#review-draft");
+    const draftText = document.querySelector("#review-draft-text");
+    const status = document.querySelector("#review-status");
+    if (!form || !draft || !draftText || !status) return;
+    projects.forEach((project) => reviewProject?.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(project.id)}">${escapeHtml(project.name)}</option>`));
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const nickname = form.elements.nickname;
+      const message = form.elements.message;
+      nickname.setCustomValidity(nickname.value.trim() ? "" : "Введите ник.");
+      message.setCustomValidity(message.value.trim() ? "" : "Напишите отзыв.");
+      if (!form.reportValidity()) return;
+      const project = projects.find((item) => item.id === reviewProject.value);
+      if (!project) return;
+      draftText.value = `Отзыв для сайта RTLC TEAM\nНик: ${nickname.value.trim()}\nИгра: ${project.name}\n\n${message.value.trim()}`;
+      draft.hidden = false;
+      status.textContent = "Отзыв ещё не отправлен. Скопируйте текст, откройте чат и отправьте сообщение.";
+      draftText.focus();
+    });
+    form.addEventListener("input", (event) => {
+      if (!event.target.name) return;
+      event.target.setCustomValidity("");
+      draft.hidden = true;
+    });
+    document.querySelector("#review-copy").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(draftText.value);
+        status.textContent = "Текст скопирован. Теперь откройте чат RTLC, вставьте его и отправьте сообщение.";
+      } catch {
+        draftText.focus();
+        draftText.select();
+        status.textContent = "Скопируйте выделенный текст вручную, затем вставьте его в чат RTLC и отправьте сообщение.";
+      }
+    });
+    form.hidden = false;
+  }
+
   function showToast(message) {
     if (!toast) return;
     window.clearTimeout(toastTimer);
@@ -294,6 +385,7 @@
   initMobileMenu();
   initReveal();
   initCopyButtons();
+  initReviewForm();
   initNavigationState();
 
   const year = document.querySelector("#current-year");

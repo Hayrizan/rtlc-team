@@ -5,6 +5,43 @@
  */
 window.RTLC_PROJECTS = [
   {
+    id: "potential-man",
+    steamAppId: 4629600,
+    name: "POTENTIAL MAN",
+    type: "translation",
+    access: ["free"],
+    tags: ["Текст", "Текстуры"],
+    checkedAt: "2026-09-07",
+    supportStatus: "Команда принимает сообщения об ошибках",
+    boosty: "https://boosty.to/rtlc/posts/00685419-4633-4fd8-b33e-a685502119a2",
+    description: "Бесплатный перевод текста и текстур, созданный по заявке Winter2ra. Распакуйте Setup.exe из архива и установите русификатор в папку игры."
+  },
+  {
+    id: "sheepy",
+    steamAppId: 1568400,
+    name: "Sheepy: A Short Adventure",
+    type: "translation",
+    access: ["free"],
+    tags: ["Текст"],
+    checkedAt: "2026-09-07",
+    supportStatus: "Команда принимает сообщения об ошибках",
+    boosty: "https://boosty.to/rtlc/posts/9bd461c9-0169-46a6-ad8e-da0f8dec8727",
+    description: "Бесплатный перевод текста с установщиком. После установки в папку игры выберите «Русский» на стартовом экране."
+  },
+  {
+    id: "the-werecleaner",
+    steamAppId: 2795000,
+    name: "The WereCleaner",
+    type: "translation",
+    access: ["free"],
+    tags: ["Текст", "Текстуры"],
+    translationVersion: "v1.0.4",
+    checkedAt: "2026-09-07",
+    supportStatus: "Команда принимает сообщения об ошибках",
+    boosty: "https://boosty.to/rtlc/posts/97e221ea-d478-4506-8b65-d72489bbc4b0",
+    description: "Бесплатный перевод текста и текстур. Для установки распакуйте архив русификатора в корневую папку игры."
+  },
+  {
     id: "moral-dilemma",
     steamAppId: 3364880,
     name: "Moral Dilemma: The Interview",
@@ -16,7 +53,7 @@ window.RTLC_PROJECTS = [
     image: "assets/projects/moral-dilemma.webp",
     boosty: "https://boosty.to/rtlc/posts/2a8ab5a3-435d-482f-ba90-cfb8b6b6931a?share=post_link",
     steam: "https://store.steampowered.com/app/3364880/Moral_Dilemma_The_Interview/",
-    description: "Бесплатный русификатор текста и текстур. Последнее пополнение каталога RTLC."
+    description: "Бесплатный русификатор текста и текстур."
   },
   {
     id: "endacopia",
@@ -34,6 +71,11 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "schedule-i",
+    updatedAt: "2026-09-02",
+    translationVersion: "v7.1 (бесплатная)",
+    supportStatus: "Команда принимает сообщения об ошибках",
+    checkedAt: "2026-09-07",
+    accessDetails: "Бесплатная версия переводит текст. Эксклюзивная версия добавляет текстуры; состав и условия доступа указаны в отдельной публикации.",
     steamAppId: 3164500,
     name: "Schedule I",
     type: "translation",
@@ -74,6 +116,10 @@ window.RTLC_PROJECTS = [
   },
   {
     id: "repo",
+    gameVersion: "v0.3.1 и новее — по данным автора бесплатной версии",
+    supportStatus: "Команда принимает сообщения об ошибках",
+    checkedAt: "2026-09-07",
+    accessDetails: "Бесплатная версия переводит текст. Эксклюзивная версия включает текстуры, синтез речи и дополнительные реплики. Условия доступа — в публикации полной версии.",
     steamAppId: 3241660,
     name: "R.E.P.O.",
     type: "translation",

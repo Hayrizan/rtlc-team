@@ -377,6 +377,62 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  function initInteractiveLogo() {
+    const logo = document.querySelector("#logo-3d");
+    if (!logo) return;
+    let rotationX = -5;
+    let rotationY = 12;
+    let startX = 0;
+    let startY = 0;
+    let startRotationX = rotationX;
+    let startRotationY = rotationY;
+
+    const render = () => {
+      logo.style.setProperty("--rx", `${rotationX}deg`);
+      logo.style.setProperty("--ry", `${rotationY}deg`);
+    };
+    const reset = () => {
+      rotationX = -5;
+      rotationY = 12;
+      render();
+    };
+
+    logo.addEventListener("pointerdown", (event) => {
+      startX = event.clientX;
+      startY = event.clientY;
+      startRotationX = rotationX;
+      startRotationY = rotationY;
+      logo.classList.add("is-dragging");
+      logo.setPointerCapture(event.pointerId);
+    });
+    logo.addEventListener("pointermove", (event) => {
+      if (!logo.hasPointerCapture(event.pointerId)) return;
+      rotationY = startRotationY + (event.clientX - startX) * .65;
+      rotationX = Math.max(-55, Math.min(55, startRotationX - (event.clientY - startY) * .55));
+      render();
+    });
+    const stopDragging = (event) => {
+      if (logo.hasPointerCapture(event.pointerId)) logo.releasePointerCapture(event.pointerId);
+      logo.classList.remove("is-dragging");
+    };
+    logo.addEventListener("pointerup", stopDragging);
+    logo.addEventListener("pointercancel", stopDragging);
+    logo.addEventListener("dblclick", reset);
+    logo.addEventListener("keydown", (event) => {
+      const steps = { ArrowLeft: [0, -8], ArrowRight: [0, 8], ArrowUp: [-8, 0], ArrowDown: [8, 0] };
+      if (event.key === "Home" || event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        reset();
+        return;
+      }
+      if (!steps[event.key]) return;
+      event.preventDefault();
+      rotationX = Math.max(-55, Math.min(55, rotationX + steps[event.key][0]));
+      rotationY += steps[event.key][1];
+      render();
+    });
+  }
+
   renderProjects();
   loadDonors();
   loadReviews();
@@ -387,6 +443,7 @@
   initCopyButtons();
   initReviewForm();
   initNavigationState();
+  initInteractiveLogo();
 
   const year = document.querySelector("#current-year");
   if (year) year.textContent = String(new Date().getFullYear());

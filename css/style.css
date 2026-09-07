@@ -41,7 +41,17 @@ button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 .topbar__links .topbar__boosty { border: 1px solid var(--line); padding: 7px 12px; border-radius: 6px; color: var(--ink); }
 .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; color: var(--ink); background: transparent; }
 .hero__content { display: grid; grid-template-columns: minmax(0,1fr) 112px; column-gap: 40px; padding: 60px 0 52px; max-width: 790px; }
-.hero__logo { grid-column: 2; grid-row: 1 / 5; width: 96px; height: auto; align-self: center; border-radius: 18px; box-shadow: 0 20px 55px rgba(0,0,0,.32), 0 0 0 8px rgba(255,255,255,.025); transform: rotate(2deg); }
+.logo-3d { --rx: -5deg; --ry: 12deg; grid-column: 2; grid-row: 1 / 6; width: 124px; align-self: center; justify-self: center; perspective: 700px; touch-action: none; user-select: none; cursor: grab; }
+.logo-3d:active { cursor: grabbing; }
+.logo-3d__float { animation: logo-float 4.8s ease-in-out infinite; }
+.logo-3d__stage { position: relative; width: 104px; margin: auto; transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .18s ease-out; }
+.logo-3d.is-dragging .logo-3d__stage { transition: none; }
+.logo-3d__depth { position: absolute; inset: 5px -7px -7px 5px; border-radius: 19px; background: #4f6049; transform: translateZ(-12px); box-shadow: 0 22px 55px rgba(0,0,0,.4); }
+.hero__logo { position: relative; width: 104px; height: auto; border-radius: 18px; transform: translateZ(9px); box-shadow: 0 0 0 1px rgba(255,255,255,.16); }
+.logo-3d__shine { position: absolute; inset: 0; border-radius: 18px; pointer-events: none; transform: translateZ(10px); background: linear-gradient(120deg, rgba(255,255,255,.24), transparent 38%, transparent 68%, rgba(255,255,255,.08)); mix-blend-mode: screen; opacity: .65; }
+.logo-3d__hint { display: block; margin-top: 15px; color: var(--muted); font-size: 11px; text-align: center; opacity: .75; transition: opacity .15s ease; }
+.logo-3d:hover .logo-3d__hint, .logo-3d:focus-visible .logo-3d__hint { opacity: 1; }
+@keyframes logo-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 .hero__kicker { grid-column: 1; margin: 0 0 10px; color: var(--muted); font-size: 13px; }
 .hero h1 { grid-column: 1; margin: 0; font-size: clamp(32px, 4vw, 46px); line-height: 1.15; letter-spacing: -.035em; font-weight: 700; }
 .hero__title-accent { color: var(--ink); }
@@ -206,7 +216,11 @@ h2 em { font: inherit; }
   .topbar__links a { padding: 10px 12px; }
   .topbar__links .topbar__boosty { margin-top: 5px; }
   .hero__content { grid-template-columns: minmax(0,1fr) 56px; gap: 0 16px; padding: 36px 0; }
-  .hero__logo { width: 56px; grid-row: 1/3; align-self: start; }
+  .logo-3d { grid-row: 1/3; width: 68px; align-self: start; }
+  .logo-3d__stage, .hero__logo { width: 60px; }
+  .logo-3d__depth { inset: 3px -4px -4px 3px; border-radius: 13px; transform: translateZ(-7px); }
+  .hero__logo, .logo-3d__shine { border-radius: 12px; }
+  .logo-3d__hint { display: none; }
   .hero::after { top: 92px; right: -60px; width: 190px; height: 190px; }
   .hero__kicker { font-size: 11px; }
   .hero h1 { font-size: 30px; }
@@ -237,4 +251,5 @@ h2 em { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+  .logo-3d__float { animation: none; }
 }

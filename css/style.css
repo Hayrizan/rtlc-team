@@ -42,9 +42,8 @@ button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 .menu-toggle { display: none; border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; color: var(--ink); background: transparent; }
 .hero__content { display: grid; justify-items: center; padding: 72px 0 64px; text-align: center; }
 .hero__kicker { margin: 0 0 22px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.hero h1 { margin: 0; font-size: clamp(68px, 10vw, 112px); line-height: .78; letter-spacing: -.075em; font-weight: 800; }
-.hero h1 span { display: block; }
-.hero__title-accent { margin-top: .2em; color: var(--orange); }
+.hero h1 { margin: 0; font-size: clamp(64px, 9vw, 104px); line-height: .88; letter-spacing: -.065em; font-weight: 800; white-space: nowrap; }
+.hero__title-accent { color: var(--orange); }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; width: fit-content; max-width: 100%; padding: 10px 16px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); color: var(--ink); font-size: 14px; font-weight: 600; line-height: 1.5; transition: background .15s ease, border-color .15s ease; }
 .button:hover { background: var(--panel-2); border-color: #63666a; }
 .hero__cta, .button--light, .button--dark { background: var(--orange); border-color: var(--orange); color: #211613; }
@@ -205,7 +204,7 @@ h2 em { font: inherit; }
   .hero__content { padding: 48px 0 44px; }
   .hero::after { top: 100px; width: 300px; height: 220px; }
   .hero__kicker { max-width: 270px; margin-bottom: 20px; font-size: 10px; line-height: 1.5; }
-  .hero h1 { font-size: clamp(62px, 23vw, 88px); }
+  .hero h1 { font-size: clamp(48px, 17vw, 68px); }
   .hero__cta { margin-top: 32px; }
   .section { padding: 36px 0; }
   .projects { padding-top: 26px; }

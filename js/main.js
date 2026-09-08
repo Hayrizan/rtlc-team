@@ -189,7 +189,7 @@
     if (!project || !modal || !modalContent) return;
 
     const accent = project.accent || accents[projects.indexOf(project) % accents.length];
-    const image = `<img src="${escapeHtml(bannerAsset(project))}" alt="${escapeHtml(t(language === "ru" && boostyMediaCounts[project.id] ? "cardAlt" : "steamCardAlt", { name: project.name }))}" width="720" height="338">`;
+    const image = `<img class="modal-hero__banner" src="${escapeHtml(bannerAsset(project))}" alt="${escapeHtml(t(language === "ru" && boostyMediaCounts[project.id] ? "cardAlt" : "steamCardAlt", { name: project.name }))}" width="720" height="338">`;
     const description = language === "en" ? t("defaultDescription") : (project.description || t("defaultDescription"));
     const exampleCount = Math.min(4, Math.max(0, (boostyMediaCounts[project.id] || 0) - 1));
     const gallery = exampleCount ? `<section class="modal-gallery" aria-labelledby="modal-gallery-title">
@@ -272,6 +272,7 @@
         if (preview && thumbnail) {
           preview.src = galleryItem.dataset.galleryImage;
           preview.alt = thumbnail.alt;
+          preview.classList.add("is-example");
           modal.querySelector(".project-modal__frame")?.scrollTo({ top: 0, behavior: "smooth" });
         }
         return;

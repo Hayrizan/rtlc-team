@@ -289,9 +289,6 @@
     document.querySelector(".image-lightbox__close")?.addEventListener("click", closeLightbox);
     document.querySelector(".image-lightbox__arrow--prev")?.addEventListener("click", () => moveLightbox(-1));
     document.querySelector(".image-lightbox__arrow--next")?.addEventListener("click", () => moveLightbox(1));
-    document.querySelector(".image-lightbox__close")?.addEventListener("click", closeLightbox);
-    document.querySelector(".image-lightbox__arrow--prev")?.addEventListener("click", () => moveLightbox(-1));
-    document.querySelector(".image-lightbox__arrow--next")?.addEventListener("click", () => moveLightbox(1));
     lightbox?.addEventListener("click", (event) => {
       if (event.target === lightbox) closeLightbox();
     });

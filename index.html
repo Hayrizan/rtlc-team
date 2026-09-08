@@ -18,10 +18,10 @@
   <meta property="og:image:alt" content="Оранжевый медведь RTLC TEAM в шапке-ушанке со звездой">
   <link rel="canonical" href="https://hayrizan.github.io/rtlc-team/">
   <link rel="icon" href="assets/branding/favicon.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css?v=banners-1">
+  <link rel="stylesheet" href="css/style.css?v=lightbox-1">
   <script src="js/i18n.js?v=bilingual-1" defer></script>
   <script src="js/projects.js?v=catalog-27" defer></script>
-  <script src="js/main.js?v=banners-1" defer></script>
+  <script src="js/main.js?v=lightbox-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main" data-ru="К содержанию" data-en="Skip to content">К содержанию</a>
@@ -253,6 +253,19 @@
     <div class="project-modal__frame">
       <button class="project-modal__close" type="button" aria-label="Закрыть окно" data-aria-ru="Закрыть окно" data-aria-en="Close dialog">×</button>
       <div id="modal-content"></div>
+    </div>
+  </dialog>
+
+  <dialog class="image-lightbox" id="image-lightbox" aria-labelledby="lightbox-title">
+    <div class="image-lightbox__frame">
+      <h2 class="sr-only" id="lightbox-title" data-ru="Просмотр примеров перевода" data-en="Translation example viewer">Просмотр примеров перевода</h2>
+      <button class="image-lightbox__close" type="button" aria-label="Закрыть изображение" data-aria-ru="Закрыть изображение" data-aria-en="Close image">×</button>
+      <button class="image-lightbox__arrow image-lightbox__arrow--prev" type="button" aria-label="Предыдущее изображение" data-aria-ru="Предыдущее изображение" data-aria-en="Previous image">‹</button>
+      <figure>
+        <img id="lightbox-image" src="" alt="">
+        <figcaption id="lightbox-counter" aria-live="polite"></figcaption>
+      </figure>
+      <button class="image-lightbox__arrow image-lightbox__arrow--next" type="button" aria-label="Следующее изображение" data-aria-ru="Следующее изображение" data-aria-en="Next image">›</button>
     </div>
   </dialog>
 

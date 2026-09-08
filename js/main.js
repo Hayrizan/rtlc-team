@@ -9,6 +9,9 @@
   const modal = document.querySelector("#project-modal");
   const modalContent = document.querySelector("#modal-content");
   const modalClose = document.querySelector(".project-modal__close");
+  const lightbox = document.querySelector("#image-lightbox");
+  const lightboxImage = document.querySelector("#lightbox-image");
+  const lightboxCounter = document.querySelector("#lightbox-counter");
   const toast = document.querySelector("#toast");
   const filters = [...document.querySelectorAll(".filter")];
   const donorsBoard = document.querySelector("#donors-board");
@@ -17,6 +20,8 @@
   const { language = "ru", t = (key) => key } = window.RTLC_I18N || {};
   let activeFilter = "all";
   let toastTimer;
+  let galleryImages = [];
+  let galleryIndex = 0;
 
   async function loadReviews() {
     if (!reviewsList) return;
@@ -267,14 +272,7 @@
     document.addEventListener("click", (event) => {
       const galleryItem = event.target.closest("[data-gallery-image]");
       if (galleryItem && modal?.open) {
-        const preview = modal.querySelector(".modal-hero > img");
-        const thumbnail = galleryItem.querySelector("img");
-        if (preview && thumbnail) {
-          preview.src = galleryItem.dataset.galleryImage;
-          preview.alt = thumbnail.alt;
-          preview.classList.add("is-example");
-          modal.querySelector(".project-modal__frame")?.scrollTo({ top: 0, behavior: "smooth" });
-        }
+        openLightbox(galleryItem);
         return;
       }
       const projectTrigger = event.target.closest("[data-project]");
@@ -288,6 +286,19 @@
     });
 
     modalClose?.addEventListener("click", closeModal);
+    document.querySelector(".image-lightbox__close")?.addEventListener("click", closeLightbox);
+    document.querySelector(".image-lightbox__arrow--prev")?.addEventListener("click", () => moveLightbox(-1));
+    document.querySelector(".image-lightbox__arrow--next")?.addEventListener("click", () => moveLightbox(1));
+    document.querySelector(".image-lightbox__close")?.addEventListener("click", closeLightbox);
+    document.querySelector(".image-lightbox__arrow--prev")?.addEventListener("click", () => moveLightbox(-1));
+    document.querySelector(".image-lightbox__arrow--next")?.addEventListener("click", () => moveLightbox(1));
+    lightbox?.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    lightbox?.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") moveLightbox(-1);
+      if (event.key === "ArrowRight") moveLightbox(1);
+    });
     modal?.addEventListener("click", (event) => {
       if (event.target === modal) closeModal();
     });
@@ -409,6 +420,35 @@
     }, { rootMargin: "-42% 0px -50%" });
 
     sections.forEach((section) => observer.observe(section));
+  }
+
+  function renderLightbox() {
+    const item = galleryImages[galleryIndex];
+    if (!item || !lightboxImage || !lightboxCounter) return;
+    lightboxImage.src = item.src;
+    lightboxImage.alt = item.alt;
+    lightboxCounter.textContent = `${galleryIndex + 1} / ${galleryImages.length}`;
+  }
+
+  function openLightbox(button) {
+    if (!lightbox) return;
+    galleryImages = [...modal.querySelectorAll("[data-gallery-image]")].map((item) => ({
+      src: item.dataset.galleryImage,
+      alt: item.querySelector("img")?.alt || ""
+    }));
+    galleryIndex = Math.max(0, galleryImages.findIndex((item) => item.src === button.dataset.galleryImage));
+    renderLightbox();
+    lightbox.showModal();
+  }
+
+  function moveLightbox(direction) {
+    if (!galleryImages.length) return;
+    galleryIndex = (galleryIndex + direction + galleryImages.length) % galleryImages.length;
+    renderLightbox();
+  }
+
+  function closeLightbox() {
+    if (lightbox?.open) lightbox.close();
   }
 
   renderProjects();
